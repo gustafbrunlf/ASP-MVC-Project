@@ -164,7 +164,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505181340098_InitialCreate.cs" />
+    <Compile Include="Migrations\201505181340098_InitialCreate.Designer.cs">
+      <DependentUpon>201505181340098_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505190814059_FilePaths.cs" />
+    <Compile Include="Migrations\201505190814059_FilePaths.Designer.cs">
+      <DependentUpon>201505190814059_FilePaths.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\FilePath.cs" />
+    <Compile Include="Models\FileType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Portfolio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -224,6 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -231,6 +243,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201505181340098_InitialCreate.resx">
+      <DependentUpon>201505181340098_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505190814059_FilePaths.resx">
+      <DependentUpon>201505190814059_FilePaths.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

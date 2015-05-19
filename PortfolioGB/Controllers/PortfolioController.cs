@@ -46,8 +46,21 @@ namespace PortfolioGB.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,Title,About,Link")] Portfolio portfolio)
+        public ActionResult Create([Bind(Include = "ID,Title,About,Link")] Portfolio portfolio, HttpPostedFileBase upload)
         {
+            if (upload != null && upload.ContentLength > 0)
+            {
+                var photo = new FilePath
+                {
+                    FileName = System.IO.Path.GetFileName(upload.FileName),
+                    FileType = FileType.Photo
+                };
+
+                portfolio.FilePaths = new List<FilePath>();
+                portfolio.FilePaths.Add(photo);
+                upload.SaveAs(System.IO.Path.Combine(Server.MapPath("~/images"), photo.FileName)); 
+            }
+
             if (ModelState.IsValid)
             {
                 db.Portfolios.Add(portfolio);
