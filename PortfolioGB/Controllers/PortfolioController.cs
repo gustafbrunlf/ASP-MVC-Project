@@ -27,7 +27,7 @@ namespace PortfolioGB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Portfolio portfolio = db.Portfolios.Find(id);
+            Portfolio portfolio = db.Portfolios.Include(i => i.FilePaths).SingleOrDefault(i => i.ID == id);
             if (portfolio == null)
             {
                 return HttpNotFound();
@@ -48,21 +48,21 @@ namespace PortfolioGB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Title,About,Link")] Portfolio portfolio, HttpPostedFileBase upload)
         {
-            if (upload != null && upload.ContentLength > 0)
-            {
-                var photo = new FilePath
-                {
-                    FileName = System.IO.Path.GetFileName(upload.FileName),
-                    FileType = FileType.Photo
-                };
-
-                portfolio.FilePaths = new List<FilePath>();
-                portfolio.FilePaths.Add(photo);
-                upload.SaveAs(System.IO.Path.Combine(Server.MapPath("~/images"), photo.FileName)); 
-            }
-
             if (ModelState.IsValid)
             {
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    var photo = new FilePath
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Photo
+                    };
+
+                    portfolio.FilePaths = new List<FilePath>();
+                    portfolio.FilePaths.Add(photo);
+                    upload.SaveAs(System.IO.Path.Combine(Server.MapPath("~/images"), photo.FileName));
+                }
+
                 db.Portfolios.Add(portfolio);
                 db.SaveChanges();
                 return RedirectToAction("Index");
