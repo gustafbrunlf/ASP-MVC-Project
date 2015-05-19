@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PortfolioGB.Models;
+using System.IO;
 
 namespace PortfolioGB.Controllers
 {
@@ -27,7 +28,7 @@ namespace PortfolioGB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Portfolio portfolio = db.Portfolios.Include(i => i.FilePaths).SingleOrDefault(i => i.ID == id);
+            Portfolio portfolio = db.Portfolios.Find(id);
             if (portfolio == null)
             {
                 return HttpNotFound();
@@ -36,6 +37,7 @@ namespace PortfolioGB.Controllers
         }
 
         // GET: /Portfolio/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -46,23 +48,27 @@ namespace PortfolioGB.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,About,Link")] Portfolio portfolio, HttpPostedFileBase upload)
+        [Authorize]
+        public ActionResult Create([Bind(Include = "ID,Title,About,Link")] Portfolio portfolio, HttpPostedFileBase imageFile)
         {
             if (ModelState.IsValid)
             {
-                if (upload != null && upload.ContentLength > 0)
+                var path = String.Empty;
+                if (imageFile != null || imageFile.ContentLength > 0)
                 {
-                    var photo = new FilePath
+                    var fileName = Path.GetFileName(imageFile.FileName);
+                    var filePath = Path.Combine(Server.MapPath("~/images"), fileName);
+
+                    try
                     {
-                        FileName = System.IO.Path.GetFileName(upload.FileName),
-                        FileType = FileType.Photo
-                    };
+                        imageFile.SaveAs(filePath);
+                        path = String.Format("/images/{0}", fileName);
+                    }
+                    catch (Exception e)
+                    { }
 
-                    portfolio.FilePaths = new List<FilePath>();
-                    portfolio.FilePaths.Add(photo);
-                    upload.SaveAs(System.IO.Path.Combine(Server.MapPath("~/images"), photo.FileName));
                 }
-
+                portfolio.Image = path;
                 db.Portfolios.Add(portfolio);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -72,6 +78,7 @@ namespace PortfolioGB.Controllers
         }
 
         // GET: /Portfolio/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +86,7 @@ namespace PortfolioGB.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Portfolio portfolio = db.Portfolios.Find(id);
+            
             if (portfolio == null)
             {
                 return HttpNotFound();
@@ -103,6 +111,7 @@ namespace PortfolioGB.Controllers
         }
 
         // GET: /Portfolio/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -120,6 +129,7 @@ namespace PortfolioGB.Controllers
         // POST: /Portfolio/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Portfolio portfolio = db.Portfolios.Find(id);

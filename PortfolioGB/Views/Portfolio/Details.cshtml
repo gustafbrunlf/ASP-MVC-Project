@@ -35,16 +35,10 @@
             @Html.DisplayFor(model => model.Link)
         </dd>
 
-        @if (Model.FilePaths.Any(f => f.FileType == FileType.Photo))
-        {
-            <dt>
-                Photo
-            </dt>
-            <dd>
-                <img src="~/images/@Model.FilePaths.First(f => f.FileType == FileType.Photo)).FileName" alt="" />
-            </dd>
-        }
-
+        <dd>
+           <img src="@Html.DisplayFor(model => model.Image)" height="200" width="200" />
+        </dd>
+        
     </dl>
 </div>
 <p>

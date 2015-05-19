@@ -10,6 +10,8 @@ namespace PortfolioGB.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Message = "Welcome!";
+
             return View();
         }
 

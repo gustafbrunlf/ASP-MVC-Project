@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<PortfolioGB.Models.Portfolio>
+@using Microsoft.AspNet.Identity;
 
 @{
     ViewBag.Title = "Work";
 }
 
 <h2>Index</h2>
-
-<p>
+@if (Request.IsAuthenticated)
+{
+ <p>
     @Html.ActionLink("Create New", "Create")
-</p>
+ </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -35,10 +39,16 @@
             @Html.DisplayFor(modelItem => item.Link)
         </td>
         <td>
+            <img src="@Html.DisplayFor(modelItem => item.Image)" height="200" width="200"/>
+        </td>
+        @if(Request.IsAuthenticated)
+        {
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
+        }
     </tr>
 }
 

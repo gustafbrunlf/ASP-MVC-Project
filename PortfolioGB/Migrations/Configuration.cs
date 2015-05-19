@@ -10,7 +10,6 @@ namespace PortfolioGB.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "PortfolioGB.Models.PortfolioDBContext";
         }
 
         protected override void Seed(PortfolioGB.Models.PortfolioDBContext context)

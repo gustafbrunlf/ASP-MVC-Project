@@ -10,12 +10,11 @@ namespace PortfolioGB.Models
         public string Title { get; set; }
         public string About { get; set; }
         public string Link { get; set; }
-        public virtual ICollection<FilePath> FilePaths { get; set; }
+        public string Image { get; set; }
     }
 
     public class PortfolioDBContext : DbContext
     {
         public DbSet<Portfolio> Portfolios { get; set; }
-        public DbSet<FilePath> FilePaths { get; set; }
     }
 }
