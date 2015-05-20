@@ -9,52 +9,51 @@
 @using (Html.BeginForm("Edit", "Portfolio", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Portfolio</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.ID)
         @Html.HiddenFor(model => model.Image)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title)
-                @Html.ValidationMessageFor(model => model.Title)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Title)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.About, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.About, 6, 30, null)
-                @Html.ValidationMessageFor(model => model.About)
+            <div class="form-group">
+                @Html.LabelFor(model => model.About, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.About, 6, 30, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.About)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Link, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Link)
-                @Html.ValidationMessageFor(model => model.Link)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Link, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Link, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Link)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.Label("Photo", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" id="Photo" name="imageFile" />
-                <br />
-                <img src="@Html.DisplayFor(model => model.Image)" height="50" />
+            <div class="form-group">
+                @Html.Label("Photo", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" id="Photo" name="imageFile" />
+                    <br />
+                    <img src="@Html.DisplayFor(model => model.Image)" height="50" />
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
             </div>
-        </div>
     </div>
 }
 
