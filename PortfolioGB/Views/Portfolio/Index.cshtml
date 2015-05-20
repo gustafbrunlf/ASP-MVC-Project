@@ -24,7 +24,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Link)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -39,7 +41,7 @@
             @Html.DisplayFor(modelItem => item.Link)
         </td>
         <td>
-            <img src="@Html.DisplayFor(modelItem => item.Image)" height="200" width="200"/>
+            <img src="@Html.DisplayFor(modelItem => item.Image)" height="200" />
         </td>
         @if(Request.IsAuthenticated)
         {

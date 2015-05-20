@@ -1,5 +1,4 @@
 ﻿@model PortfolioGB.Models.Portfolio
-
 @{
     ViewBag.Title = "Edit";
 }
@@ -7,7 +6,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Portfolio", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -16,6 +15,7 @@
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.Image)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.About, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.About)
+                @Html.TextAreaFor(model => model.About, 6, 30, null)
                 @Html.ValidationMessageFor(model => model.About)
             </div>
         </div>
@@ -38,6 +38,15 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Link)
                 @Html.ValidationMessageFor(model => model.Link)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Photo", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" id="Photo" name="imageFile" />
+                <br />
+                <img src="@Html.DisplayFor(model => model.Image)" height="50" />
             </div>
         </div>
 

@@ -54,7 +54,7 @@ namespace PortfolioGB.Controllers
             if (ModelState.IsValid)
             {
                 var path = String.Empty;
-                if (imageFile != null || imageFile.ContentLength > 0)
+                if (imageFile != null && imageFile.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(imageFile.FileName);
                     var filePath = Path.Combine(Server.MapPath("~/images"), fileName);
@@ -99,10 +99,33 @@ namespace PortfolioGB.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,Title,About,Link")] Portfolio portfolio)
+        public ActionResult Edit([Bind(Include="ID,Title,About,Link,Image")] Portfolio portfolio, HttpPostedFileBase imageFile)
         {
             if (ModelState.IsValid)
             {
+                var path = String.Empty;
+                if (imageFile != null && imageFile.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(imageFile.FileName);
+                    var filePath = Path.Combine(Server.MapPath("~/images"), fileName);
+
+                    try
+                    {
+                        imageFile.SaveAs(filePath);
+                        path = String.Format("/images/{0}", fileName);
+                    }
+                    catch (Exception e)
+                    {
+                        //Exception.Message.e;
+                    }
+
+                }
+                else
+                {
+                    path = portfolio.Image;
+                }
+
+                portfolio.Image = path;
                 db.Entry(portfolio).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -123,6 +146,7 @@ namespace PortfolioGB.Controllers
             {
                 return HttpNotFound();
             }
+            
             return View(portfolio);
         }
 
@@ -134,6 +158,9 @@ namespace PortfolioGB.Controllers
         {
             Portfolio portfolio = db.Portfolios.Find(id);
             db.Portfolios.Remove(portfolio);
+            var fileName = Path.GetFileName(portfolio.Image);
+            var filePath = Path.Combine(Server.MapPath("~/images"), fileName);
+            System.IO.File.Delete(filePath);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
