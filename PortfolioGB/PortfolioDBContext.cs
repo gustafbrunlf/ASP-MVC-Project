@@ -9,6 +9,12 @@ namespace PortfolioGB
 {
     public class PortfolioDBContext : DbContext
     {
+        public PortfolioDBContext()
+            : base("DefaultConnection")
+        {
+
+        }
+
         public DbSet<Portfolio> Portfolios { get; set; }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Contact> Contacts { get; set; }
