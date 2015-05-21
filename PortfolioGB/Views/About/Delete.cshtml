@@ -1,4 +1,4 @@
-﻿@model PortfolioGB.Models.Portfolio
+﻿@model PortfolioGB.Models.About
 
 @{
     ViewBag.Title = "Delete";
@@ -8,7 +8,7 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Portfolio</h4>
+    <h4>About</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,27 +20,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.About)
+            @Html.DisplayNameFor(model => model.Info)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.About)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Link)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Link)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            <img src="@Html.DisplayFor(model => model.Image)" height="50" />
+            @Html.DisplayFor(model => model.Info)
         </dd>
 
     </dl>

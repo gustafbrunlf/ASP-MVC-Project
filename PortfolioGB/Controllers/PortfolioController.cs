@@ -64,8 +64,10 @@ namespace PortfolioGB.Controllers
                         imageFile.SaveAs(filePath);
                         path = String.Format("/images/{0}", fileName);
                     }
-                    catch (Exception e)
-                    { }
+                    catch (Exception ex)
+                    {
+                        ViewBag.Message = "Error " + ex.Message;
+                    }
 
                 }
                 portfolio.Image = path;
@@ -114,9 +116,9 @@ namespace PortfolioGB.Controllers
                         imageFile.SaveAs(filePath);
                         path = String.Format("/images/{0}", fileName);
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        //Exception.Message.e;
+                        ViewBag.Message = "Error " + ex.Message;
                     }
 
                 }

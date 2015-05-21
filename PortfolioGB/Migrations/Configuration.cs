@@ -5,14 +5,14 @@ namespace PortfolioGB.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<PortfolioGB.Models.PortfolioDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<PortfolioGB.PortfolioDBContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(PortfolioGB.Models.PortfolioDBContext context)
+        protected override void Seed(PortfolioGB.PortfolioDBContext context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<PortfolioGB.Models.About>
+
+@{
+    ViewBag.Title = "About";
+}
+
+@foreach (var item in Model) {
+    
+    <h1>@Html.DisplayFor(modelItem => item.Title)</h1>
+    <p>@Html.DisplayFor(modelItem => item.Info)</p>
+        
+    if (Request.IsAuthenticated)
+    {
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </p>
+    }
+}
+
+@if (Request.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}

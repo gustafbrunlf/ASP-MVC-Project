@@ -158,20 +158,33 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201505191144283_Initial.cs" />
-    <Compile Include="Migrations\201505191144283_Initial.Designer.cs">
-      <DependentUpon>201505191144283_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201505201413027_Initial.cs" />
+    <Compile Include="Migrations\201505201413027_Initial.Designer.cs">
+      <DependentUpon>201505201413027_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505201413369_Abouts.cs" />
+    <Compile Include="Migrations\201505201413369_Abouts.Designer.cs">
+      <DependentUpon>201505201413369_Abouts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505201421240_Contacts.cs" />
+    <Compile Include="Migrations\201505201421240_Contacts.Designer.cs">
+      <DependentUpon>201505201421240_Contacts.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\About.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Portfolio.cs" />
+    <Compile Include="PortfolioDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -226,6 +239,14 @@
     <Content Include="Views\Portfolio\Details.cshtml" />
     <Content Include="Views\Portfolio\Edit.cshtml" />
     <Content Include="Views\Portfolio\Index.cshtml" />
+    <Content Include="Views\About\Create.cshtml" />
+    <Content Include="Views\About\Delete.cshtml" />
+    <Content Include="Views\About\Edit.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Contact\Create.cshtml" />
+    <Content Include="Views\Contact\Delete.cshtml" />
+    <Content Include="Views\Contact\Edit.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -239,8 +260,14 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505191144283_Initial.resx">
-      <DependentUpon>201505191144283_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505201413027_Initial.resx">
+      <DependentUpon>201505201413027_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505201413369_Abouts.resx">
+      <DependentUpon>201505201413369_Abouts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505201421240_Contacts.resx">
+      <DependentUpon>201505201421240_Contacts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
