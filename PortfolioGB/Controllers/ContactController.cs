@@ -34,7 +34,7 @@ namespace PortfolioGB.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create([Bind(Include="ID,Title,Address,Email,Phone")] Contact contact)
+        public ActionResult Create([Bind(Include="ID,Title,Address,Zip,Email,Phone")] Contact contact)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +68,7 @@ namespace PortfolioGB.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include="ID,Title,Address,Email,Phone")] Contact contact)
+        public ActionResult Edit([Bind(Include="ID,Title,Address,Zip,Email,Phone")] Contact contact)
         {
             if (ModelState.IsValid)
             {

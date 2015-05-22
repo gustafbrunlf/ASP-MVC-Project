@@ -166,19 +166,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201505201413027_Initial.cs" />
-    <Compile Include="Migrations\201505201413027_Initial.Designer.cs">
-      <DependentUpon>201505201413027_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505201413369_Abouts.cs" />
-    <Compile Include="Migrations\201505201413369_Abouts.Designer.cs">
-      <DependentUpon>201505201413369_Abouts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505201421240_Contacts.cs" />
-    <Compile Include="Migrations\201505201421240_Contacts.Designer.cs">
-      <DependentUpon>201505201421240_Contacts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Contact.cs" />
@@ -251,6 +238,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="images\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -258,17 +246,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505201413027_Initial.resx">
-      <DependentUpon>201505201413027_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505201413369_Abouts.resx">
-      <DependentUpon>201505201413369_Abouts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505201421240_Contacts.resx">
-      <DependentUpon>201505201421240_Contacts.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
