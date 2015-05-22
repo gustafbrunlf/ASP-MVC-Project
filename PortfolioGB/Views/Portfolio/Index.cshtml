@@ -13,8 +13,26 @@
     @Html.ActionLink("Create New", "Create")
  </p>
 }
+<div class="row">
 
-<table class="table">
+        @foreach (var item in Model)
+{
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+
+        <img src="@Html.DisplayFor(modelItem => item.Image)" height="150" />
+
+        <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+
+        <p>@Html.DisplayFor(modelItem => item.About)</p>
+
+        <a href="http://@Html.DisplayFor(modelItem => item.Link)" target="_blank">Check it out!</a>
+
+    </div>
+}
+
+</div>
+
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -55,4 +73,4 @@
     </tr>
 }
 
-</table>
+</table>*@
