@@ -17,7 +17,7 @@
 
         @foreach (var item in Model)
 {
-    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 workcontainer">
 
         <img src="@Html.DisplayFor(modelItem => item.Image)" height="150" />
 
@@ -26,51 +26,17 @@
         <p>@Html.DisplayFor(modelItem => item.About)</p>
 
         <a href="http://@Html.DisplayFor(modelItem => item.Link)" target="_blank">Check it out!</a>
-
+        <hr />
+        @if (Request.IsAuthenticated)
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) 
+            <span> - </span>
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
+            <span> - </span>
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        }
+        
     </div>
 }
 
 </div>
-
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.About)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Link)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.About)
-        </td>
-        <td>
-            <a href="http://@Html.DisplayFor(modelItem => item.Link)" target="_blank">Check it out!</a>
-        </td>
-        <td>
-            <img src="@Html.DisplayFor(modelItem => item.Image)" height="150" />
-        </td>
-        @if(Request.IsAuthenticated)
-        {
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-        }
-    </tr>
-}
-
-</table>*@

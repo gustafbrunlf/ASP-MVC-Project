@@ -57,12 +57,18 @@ namespace PortfolioGB.Controllers
                 if (imageFile != null && imageFile.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(imageFile.FileName);
-                    var filePath = Path.Combine(Server.MapPath("~/images"), fileName);
+                    var randomName = Path.GetRandomFileName();
 
+                    string[] words = fileName.Split('.');
+
+                    var newName = words[0] + randomName + "." + words[1];
+
+                    var filePath = Path.Combine(Server.MapPath("~/images"), newName);
+                    
                     try
                     {
                         imageFile.SaveAs(filePath);
-                        path = String.Format("/images/{0}", fileName);
+                        path = String.Format("/images/{0}", newName);
                     }
                     catch (Exception ex)
                     {
@@ -162,7 +168,10 @@ namespace PortfolioGB.Controllers
             db.Portfolios.Remove(portfolio);
             var fileName = Path.GetFileName(portfolio.Image);
             var filePath = Path.Combine(Server.MapPath("~/images"), fileName);
-            System.IO.File.Delete(filePath);
+            if (fileName != "")
+	        {
+                System.IO.File.Delete(filePath);
+	        }
             db.SaveChanges();
             return RedirectToAction("Index");
         }

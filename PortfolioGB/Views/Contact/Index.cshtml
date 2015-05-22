@@ -18,7 +18,7 @@
     <p class="bold">@Html.DisplayNameFor(model => model.Phone)</p>
     <p>@Html.DisplayFor(modelItem => item.Phone)</p>
     
-    if (Request.IsAuthenticated)
+    if(Request.IsAuthenticated)
     {
         <p>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

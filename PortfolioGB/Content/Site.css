@@ -56,3 +56,7 @@ input[type="checkbox"].input-validation-error {
 .navbar-inverse .navbar-nav li a {
     color: #000;
 }
+
+.workcontainer {
+    margin-bottom: 50px;
+}
