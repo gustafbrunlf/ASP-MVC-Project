@@ -5,7 +5,7 @@
     ViewBag.Title = "Work";
 }
 
-<h2>Index</h2>
+<h2>Work</h2>
 <h3>@ViewBag.Message</h3>
 @if (Request.IsAuthenticated)
 {
@@ -39,10 +39,10 @@
             @Html.DisplayFor(modelItem => item.About)
         </td>
         <td>
-            <a href="http://@Html.DisplayFor(modelItem => item.Link)">Check it out!</a>
+            <a href="http://@Html.DisplayFor(modelItem => item.Link)" target="_blank">Check it out!</a>
         </td>
         <td>
-            <img src="@Html.DisplayFor(modelItem => item.Image)" height="200" />
+            <img src="@Html.DisplayFor(modelItem => item.Image)" height="150" />
         </td>
         @if(Request.IsAuthenticated)
         {
